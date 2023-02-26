@@ -1,5 +1,7 @@
 import { type RouteRecordRaw, createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 
+const Layout = () => import("@/layout/index.vue")
+
 /** 常驻路由 */
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -8,7 +10,24 @@ export const constantRoutes: RouteRecordRaw[] = [
     meta: {
       hidden: true
     }
-  }
+  },
+  {
+    path: "/",
+    component: Layout,
+    redirect: "/dashboard",
+    children: [
+      {
+        path: "dashboard",
+        component: () => import("@/views/dashboard/index.vue"),
+        name: "Dashboard",
+        meta: {
+          title: "首页",
+          svgIcon: "dashboard",
+          affix: true
+        }
+      }
+    ]
+  },
 ]
 
 const router = createRouter({

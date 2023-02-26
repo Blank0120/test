@@ -2,7 +2,7 @@ import { ref } from "vue"
 import store from "@/store"
 import { defineStore } from "pinia"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
-import { loginApi } from "@/api/login"
+import { getUserInfoApi, loginApi } from "@/api/login"
 import { type ILoginRequestData } from "@/api/login/types/login"
 import { resetRouter } from "@/router"
 
@@ -41,8 +41,28 @@ export const useUserStore = defineStore("user", () => {
     roles.value = []
     resetRouter()
   }
+  /** 重置 Token */
+  const resetToken = () => {
+    removeToken()
+    token.value = ""
+    roles.value = []
+  }
+  /** 获取用户详情 */
+  const getInfo = () => {
+    return new Promise((resolve, reject) => {
+      getUserInfoApi()
+        .then((res) => {
+          roles.value = res.data.roles
+          username.value = res.data.username
+          resolve(res)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
 
-  return { token, roles, username, setRoles, login, logout, }
+  return { token, roles, username, setRoles, login, logout, resetToken, getInfo, }
 })
 
 /** 在 setup 外使用 */
