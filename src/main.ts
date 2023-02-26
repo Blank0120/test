@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import { loadPlugins } from "@/plugins"
 import store from "@/store"
 import router from "@/router"
+import "@/router/permission"
 
 import "@/styles/index.scss"
 
