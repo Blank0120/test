@@ -28,6 +28,22 @@ export const constantRoutes: RouteRecordRaw[] = [
       }
     ]
   },
+  {
+    path: "/unocss",
+    component: Layout,
+    redirect: "/unocss/index",
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/unocss/index.vue"),
+        name: "UnoCSS",
+        meta: {
+          title: "unocss",
+          svgIcon: "unocss"
+        }
+      }
+    ]
+  },
 ]
 
 const router = createRouter({

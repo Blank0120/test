@@ -20,3 +20,12 @@ const key = computed(() => {
     </router-view>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.app-main {
+  background-color: var(--v3-body-bg-color);
+  padding-top: var(--v3-navigationbar-height);
+  height: 100vh;
+  overflow: auto;
+}
+</style>
