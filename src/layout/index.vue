@@ -2,7 +2,7 @@
 import { computed } from "vue"
 import { useAppStore, DeviceType } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
-import { AppMain, NavigationBar} from "./components"
+import { AppMain, NavigationBar, TagsView} from "./components"
 
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
@@ -39,6 +39,7 @@ const showColorWeakness = computed(() => {
     <div :class="{ hasTagsView: showTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <NavigationBar />
+        <TagsView v-if="showTagsView" />
       </div>
       <AppMain />
     </div>
